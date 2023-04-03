@@ -16,7 +16,7 @@ const timeout = function (s) {
 ///////////////////////////////////////
 //feching data from api
 //customizing our error message
-
+//recipe renaming 
 const showRecipe = async function (){
   try {
     const res = await fetch(
@@ -27,6 +27,16 @@ const showRecipe = async function (){
     if(!res.ok) throw new Error ( `${data.message} (${res.status})`)
 
      console.log(res, data);
+     let {recipe} = data.data;
+     recipe = {
+      id :recipe.id,
+      title: recipe.publisher,
+      publisher: recipe.source_url,
+      image: recipe.image_url,
+      servings: recipe.cooking_time,
+      ingredients: recipe.ingredients
+     }
+     console.log(recipe);
   } catch (err){
     alert(err);
   }
