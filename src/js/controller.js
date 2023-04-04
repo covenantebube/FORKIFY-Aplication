@@ -16,8 +16,8 @@ if(module.hot){
 
 const controlRecipes = async function (){
   try {
-    // const id = window.location.hash.slice(1);
-      const id = window.location.pathname.slice(1);
+     const id = window.location.hash.slice(1);
+     // const id = window.location.pathname.slice(1);
       console.log(id);
 
       if (!id) return;
@@ -54,7 +54,7 @@ const controlSearchResults = async function(){
     console.log(err);
   }
 };
-controlSearchResults();
+// controlSearchResults();
 
 
 const init = function(){
