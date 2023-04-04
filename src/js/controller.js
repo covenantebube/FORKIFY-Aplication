@@ -4,7 +4,7 @@ import 'core-js/stable';
 import 'regenerator-runtime/runtime'
 const { compileString } = require("sass");
 
-const recipeContainer = document.querySelector('.recipe');
+// const recipeContainer = document.querySelector('.recipe');
 
 const timeout = function (s) {
   return new Promise(function (_, reject) {
@@ -28,12 +28,12 @@ const controlRecipes = async function (){
 
       if (!id) return;
     recipeView.renderSpinner();
-    
+
     //* 1) Loading Recipe
     await model.loadRecipe(id);
       
      //* 2)Rendering recipe
-    recipeView.render(model.state.recipe);      
+    recipeView.render(model.state.recipe);       
       
 
 
