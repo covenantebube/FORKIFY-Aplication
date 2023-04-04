@@ -8,7 +8,9 @@ import 'regenerator-runtime/runtime'
 const { compileString } = require("sass");
 
 
-
+if(module.hot){
+  module.hot.accept();
+}
 
 
 
@@ -33,16 +35,18 @@ const controlRecipes = async function (){
 
 const controlSearchResults = async function(){
   try{
-      resultsView.renderSpinner();
-  
-    // 1) Get  search query
+     
+    
+       // 1) Get  search query
     const query = searchView.getQuery();
-    if(!query) return;
-
+     if(!query) return;
+     resultsView.renderSpinner();
+   
     // 2) Load search result
+       
    await model.loadSearchResults(query);
 
-   // 3) reder search result
+   // 3) render search result
    console.log(model.state.search.results);
    resultsView.render(model.state.search.results)
 
