@@ -4,6 +4,7 @@ import resultsView from './views/resultsView.js';
 import recipeView from './views/recipeView.js'
 import searchView from './views/searchView.js';
 import paginationView from './views/paginationView.js';
+
 import 'core-js/stable';
 import 'regenerator-runtime/runtime'
 const { compileString } = require("sass");
@@ -58,7 +59,6 @@ const controlSearchResults = async function(){
     console.log(err);
   }
 };
-
  const controlPagination = function (goToPage) {
   // 1) Render NEW results
   resultsView.render(model.getSearchResultsPage(goToPage));
@@ -66,7 +66,7 @@ const controlSearchResults = async function(){
   // 2) Render NEW pagination buttons
   paginationView.render(model.state.search);
 };
-
+controlPagination();
 
 
 
