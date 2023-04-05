@@ -15,12 +15,23 @@ _message = '';
   }
 
 
+  addHandlerUpdateServings(handler) {
+    this._parentElement.addEventListener('click', function (e) {
+      const btn = e.target.closest('.btn--update-servings');
+      if (!btn) return;
+      const { updateTo } = btn.dataset;
+      if (+updateTo > 0) handler(+updateTo);
+    });
+  }
+
 _generateMarkup(){
     return `
-      <figure class="recipe__fig">
-          <img src="${this._data.image}" alt="Tomato" class="recipe__img" />
+          <figure class="recipe__fig">
+          <img src="${this._data.image}" alt="${
+        this._data.title
+      }" class="recipe__img" />
           <h1 class="recipe__title">
-            <span>${this._data.title}"</span>
+            <span>${this._data.title}</span>
           </h1>
         </figure>
 
@@ -29,29 +40,38 @@ _generateMarkup(){
             <svg class="recipe__info-icon">
               <use href="${icons}#icon-clock"></use>
             </svg>
-            <span class="recipe__info-data recipe__info-data--minutes">${this._data.cookingTime}"</span>
+            <span class="recipe__info-data recipe__info-data--minutes">${
+              this._data.cookingTime
+            }</span>
             <span class="recipe__info-text">minutes</span>
           </div>
           <div class="recipe__info">
             <svg class="recipe__info-icon">
               <use href="${icons}#icon-users"></use>
             </svg>
-            <span class="recipe__info-data recipe__info-data--people">${this._data.servings}</span>
+            <span class="recipe__info-data recipe__info-data--people">${
+              this._data.servings
+            }</span>
             <span class="recipe__info-text">servings</span>
 
             <div class="recipe__info-buttons">
-              <button class="btn--tiny btn--increase-servings">
+              <button class="btn--tiny btn--update-servings" data-update-to="${
+                this._data.servings - 1
+              }">
                 <svg>
                   <use href="${icons}#icon-minus-circle"></use>
                 </svg>
               </button>
-              <button class="btn--tiny btn--increase-servings">
+              <button class="btn--tiny btn--update-servings" data-update-to="${
+                this._data.servings + 1
+              }">
                 <svg>
                   <use href="${icons}#icon-plus-circle"></use>
                 </svg>
               </button>
             </div>
           </div>
+ 
 
           <div class="recipe__user-generated">
           </div>
